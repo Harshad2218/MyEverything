@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ffccd5, #ffc1e3);
+            color: #330033;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #660066;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #990099;
+        }
+
+        .button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            color: #ffffff;
+            background: #cc0066;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #b30059;
+        }
+
+        @media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, My smile ❤️</h1>
+        <p>You are the most precious part of my life. Today, I have something special just for you.<br>
+        A journey of love, words, and feelings awaits you. Are you ready to step into my heart?</p>
+        <button class="button" onclick="revealPoem()">Reveal</button>
+    </div>
+
+    <audio id="backgroundMusic" autoplay loop>
+        <source src="tum.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        function revealPoem() {
+            window.location.href = "poem.html";
+        }
+
+        // Ensure the music starts when the page loads
+        window.onload = () => {
+            const music = document.getElementById('backgroundMusic');
+            music.play().catch(error => console.log("Music play failed: ", error));
+        };
+    </script>
+</body>
+</html>

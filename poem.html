@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You - Poem</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif, 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', 'Emoji', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://plus.unsplash.com/premium_photo-1676478746990-4ef5c8ef234a?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Zmxvd2VycyUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D') no-repeat center center/cover;
+            color: #ffffff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .poem-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(247, 245, 245, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .poem-line {
+            font-size: 1.7rem;
+            margin: 12px 0;
+            color: #f87070;
+        }
+
+        .poem-char {
+            display: inline-block;
+            opacity: 0;
+            white-space: pre;
+        }
+
+        audio {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .poem-line {
+                font-size: 1.1rem; /* Adjust font size for smaller screens */
+            }
+
+            .poem-container {
+                padding: 15px; /* Reduce padding on smaller screens */
+            }
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="poemContainer" class="poem-container">
+        <div class="poem-line" id="line1"></div>
+        <div class="poem-line" id="line2"></div>
+        <div class="poem-line" id="line3"></div>
+        <div class="poem-line" id="line4"></div>
+        <div class="poem-line" id="line5"></div>
+        <div class="poem-line" id="line6"></div>
+        <div class="poem-line" id="line7"></div>
+        <div class="poem-line" id="line8"></div>
+        <div class="poem-line" id="line9"></div>
+        <div class="poem-line" id="line10"></div>
+    </div>
+    
+    <audio id="loveSong" loop>
+        <source src="tum.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const poemLines = [
+        "You are my world, my heart, my soul ",
+        "With you, my life feels truly whole .",
+        "Through every storm, through every tide ",
+        "I’ll always be here by your side .",
+        "In your love, I’ve found my home ",
+        "With you, I’m never alone .",
+        "Together, we’re forever free ",
+        "You mean everything to me ",
+        "You mean everything to me ",
+        "Radhe Radhe ❤️❤️"
+        ];
+
+        const poemContainer = document.getElementById('poemContainer');
+        const loveSong = document.getElementById('loveSong');
+
+        function displayLineByLine() {
+            let delay = 0;
+
+            poemLines.forEach((line, index) => {
+                const lineContainer = document.getElementById(`line${index + 1}`);
+                line.split('').forEach((char, i) => {
+                    const charSpan = document.createElement('span');
+                    charSpan.textContent = char === ' ' ? '\u00A0' : char;
+                    charSpan.className = 'poem-char';
+                    lineContainer.appendChild(charSpan);
+
+                    setTimeout(() => {
+                        charSpan.style.opacity = 1;
+
+                        // Start the audio when the first character of the first line is shown
+                        if (index === 0 && i === 0) {
+                            loveSong.play();
+                        }
+                    }, delay);
+
+                    delay += 100; // 100ms per character
+                });
+                delay += 500; // Additional delay after each line
+            });
+        }
+
+        window.onload = displayLineByLine;
+    </script>
+</body>
+</html>
